@@ -142,7 +142,7 @@ const Projects = () => {
       title: "Mobile Patient Tracking System",
       description: "A cross-platform mobile application for healthcare providers to monitor patient vitals, appointments, and treatment plans in real-time.",
       tags: ["React Native", "Firebase", "Redux", "Node.js"],
-      github: "#",
+      github: "https://github.com/malvina404/patient-management-system",
       live: "#",
       icon: <FaMobile size={24} />
     },
@@ -150,7 +150,7 @@ const Projects = () => {
       title: "Personal Portfolio Website",
       description: "A responsive portfolio website showcasing my projects, skills, and professional experience with modern animations and dark mode support.",
       tags: ["React", "Styled Components", "Framer Motion", "EmailJS"],
-      github: "#",
+      github: "https://github.com/malvina404/my-portfolio",
       live: "#",
       icon: <FaLaptopCode size={24} />
     },
@@ -158,7 +158,7 @@ const Projects = () => {
       title: "E-commerce Platform",
       description: "Full-featured online store with payment processing, inventory management, and admin dashboard.",
       tags: ["React", "Node.js", "MongoDB", "Stripe"],
-      github: "#",
+      github: "http",
       live: "#"
     }
   ];

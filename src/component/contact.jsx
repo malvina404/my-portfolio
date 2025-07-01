@@ -95,13 +95,13 @@
 // export default Contact;
 import { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
-import { FaPaperPlane, FaCheck } from 'react-icons/fa';
+import { FaPaperPlane, FaCheck, FaExclamationTriangle } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Contact = () => {
   const formRef = useRef();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [messageSent, setMessageSent] = useState(false);
+  const [messageStatus, setMessageStatus] = useState(null); // null, 'success', or 'error'
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -116,29 +116,37 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    emailjs.sendForm(
-      'YOUR_SERVICE_ID',
-      'YOUR_TEMPLATE_ID',
-      formRef.current,
-      'YOUR_PUBLIC_KEY'
-    )
-    .then(() => {
-      setMessageSent(true);
+    setMessageStatus(null);
+
+    try {
+      const result = await emailjs.sendForm(
+        'service_z66jmpi',
+        'template_01zcszp',
+        formRef.current,
+        'GZSsnIJ8Z4N635wuU'
+      );
+
+      if (result.status === 200) {
+        setMessageStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          message: ''
+        });
+      } else {
+        setMessageStatus('error');
+      }
+    } catch (error) {
+      console.error('Email sending failed:', error);
+      setMessageStatus('error');
+    } finally {
       setIsSubmitting(false);
-      setFormData({
-        name: '',
-        email: '',
-        message: ''
-      });
-      setTimeout(() => setMessageSent(false), 5000);
-    })
-    .catch(() => {
-      setIsSubmitting(false);
-    });
+      // Clear message after 5 seconds
+      setTimeout(() => setMessageStatus(null), 5000);
+    }
   };
 
   return (
@@ -165,6 +173,7 @@ const Contact = () => {
               placeholder="Name" 
               className="form-control form-control-lg" 
               required
+              minLength={2}
               value={formData.name}
               onChange={handleChange}
             />
@@ -187,6 +196,7 @@ const Contact = () => {
               className="form-control form-control-lg" 
               rows="5"
               required
+              minLength={10}
               value={formData.message}
               onChange={handleChange}
             ></textarea>
@@ -211,17 +221,30 @@ const Contact = () => {
           </button>
           
           <AnimatePresence>
-            {messageSent && (
+            {messageStatus && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
-                className="alert alert-success mt-4 d-flex align-items-center"
+                className={`alert mt-4 d-flex align-items-center ${
+                  messageStatus === 'success' 
+                    ? 'alert-success' 
+                    : 'alert-danger'
+                }`}
                 style={{ position: 'absolute', bottom: '-80px', left: 0, right: 0 }}
               >
-                <FaCheck className="me-2" />
-                Message sent successfully! I'll get back to you soon.
+                {messageStatus === 'success' ? (
+                  <>
+                    <FaCheck className="me-2" />
+                    Message sent successfully! I'll get back to you soon.
+                  </>
+                ) : (
+                  <>
+                    <FaExclamationTriangle className="me-2" />
+                    Failed to send message. Please try again.
+                  </>
+                )}
               </motion.div>
             )}
           </AnimatePresence>
