@@ -1,0 +1,31 @@
+.projects-section {
+  padding: 5rem 0;
+  background: var(--bg-light);
+}
+
+.title-underline {
+  width: 4rem;
+  height: 2px;
+  background: var(--primary);
+}
+
+.project-card {
+  background: white;
+  border-radius: 0.8rem;
+  padding: 2rem;
+  height: 100%;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.tags span {
+  background: rgba(100, 100, 255, 0.1);
+  padding: 0.3rem 0.8rem;
+  border-radius: 2rem;
+  margin-right: 0.5rem;
+}

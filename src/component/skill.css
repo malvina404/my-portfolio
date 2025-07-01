@@ -1,0 +1,36 @@
+.skills-section {
+  padding: 5rem 0;
+  background: var(--bg-dark);
+  color: white;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.skill-card {
+  background: rgba(255,255,255,0.1);
+  padding: 2rem;
+  border-radius: 0.5rem;
+}
+
+.skill-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.progress {
+  height: 8px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 4px;
+  margin-top: 1rem;
+}
+
+.progress-bar {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 4px;
+}
