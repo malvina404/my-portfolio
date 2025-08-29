@@ -208,7 +208,7 @@ const About = () => {
   const handleDownloadCV = () => {
     setIsDownloading(true);
     setTimeout(() => {
-      const cvUrl = '/CV_202404180942407_094709.pdf'; // Simplified path
+      const cvUrl = '/CV malvina.pdf'; // Simplified path
       const link = document.createElement('a');
       link.href = cvUrl;
       link.download = 'Ndote_Malvina_CV.pdf'; // Updated with your name
