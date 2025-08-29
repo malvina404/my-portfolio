@@ -1,3 +1,4 @@
-# https://www.robotstxt.org/robotstxt.html
+https://my-portfolio-git-main-ndote-thengue-malvinas-projects.vercel.app/
 User-agent: *
-Disallow:
+Allow: /
+Sitemap: https://your-main-domain.vercel.app/sitemap.xml
